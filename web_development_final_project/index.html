@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+
+<body>
+    <header>
+        <h1>STUDENT MANAGEMENT SYSTEM</h1>
+    </header>
+
+    <div class="navbar">
+        <nav>
+            <!-- Navigation links -->
+            <ul>
+                <li><a href="#name-add-course">Add Course and Set Grading Scale</a></li>
+                <li><a href="#name-add-student">Add Student and Scores</a></li>
+                <li><a href="#name-view-course-info">View Course Informations</a></li>
+                <li><a href="#name-search-student">Search a Student</a></li>
+                <li><a href="#name-view-all-students">View All Students' Results</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+
+    <div class="container">
+
+        <a name="name-add-course">ADD COURSE:</a>
+        <div class="add-course">
+            <form name="addCourseForm">
+                <label for="courseName">Course Name:</label>
+                <input type="text" id="courseName" name="courseName" required placeholder="Enter name of the course you want to add">
+
+                <label for="AA">AA:</label>
+                <input type="text" id="AA" name="AA" required placeholder="Specify the grading scale (90)">
+
+                <label for="BA">BA:</label>
+                <input type="text" id="BA" name="BA" required placeholder="Specify the grading scale (80)">
+
+                <label for="BB">BB:</label>
+                <input type="text" id="BB" name="BB" required placeholder="Specify the grading scale (70)">
+
+                <label for="CB">CB:</label>
+                <input type="text" id="CB" name="CB" required placeholder="Specify the grading scale (60)">
+
+                <label for="CC">CC:</label>
+                <input type="text" id="CC" name="CC" required placeholder="Specify the grading scale (50)">
+
+                <label for="DC">DC:</label>
+                <input type="text" id="DC" name="DC" required placeholder="Specify the grading scale (40)">
+
+                <label for="DD">DD:</label>
+                <input type="text" id="DD" name="DD" required placeholder="Specify the grading scale (30)">
+
+                <label for="FF">FF:</label>
+                <input type="text" id="FF" name="FF" required placeholder="Specify the grading scale (20)">
+
+                <button type="button" onclick="addCourse()">Add Course</button>
+            </form>
+            <p id="successMessage" style="color: green; display: none;">Course added successfully</p>
+        </div>
+
+
+        
+        <a name="name-add-student">ADD STUDENT:</a>
+        <div class="add-student">
+            <form name="addStudentForm">
+                <label for="chooseCourse">Choose a Course:</label>
+                <select id="chooseCourse" name="chooseCourse">
+                    <option value="" disabled selected hidden>Choose a Course</option>
+                    <!-- We can dynamically populate this list based on your courses array -->
+                </select>
+
+                <label for="studentId">ID:</label>
+                <input type="text" id="studentId" name="studentId" required placeholder="Student ID">
+
+                <label for="studentName">Name:</label>
+                <input type="text" id="studentName" name="studentName" required placeholder="Student Name">
+
+                <label for="studentSurname">Surname:</label>
+                <input type="text" id="studentSurname" name="studentSurname" required placeholder="Student Surname">
+
+                <label for="midtermScore">Midterm Score:</label>
+                <input type="text" id="midtermScore" name="midtermScore" required placeholder="Midterm Score">
+
+                <label for="finalScore">Final Score:</label>
+                <input type="text" id="finalScore" name="finalScore" required placeholder="Final Score">
+
+                <button type="button" onclick="addStudent()">Add Student</button>
+            </form>
+            <p id="successMessageStudent" style="color: green; display: none;">Student added successfully</p>
+        </div>
+
+
+
+        <a name="name-view-course-info">VIEW COURSE INFORMATIONS:</a>
+        <div class="view-course-info">
+            <form name="viewCourseInfoForm">
+                <label for="chooseCourse">Choose a Course:</label>
+                <select id="chooseCourseView" name="chooseCourse">
+                    <option value="" disabled selected hidden>Choose a Course</option>
+                    <!-- Add your courses dynamically -->
+                </select>
+
+                <button type="button" onclick="searchCourse()">Search Course</button>
+
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Surname</th>
+                            <th>Midterm Score</th>
+                            <th>Final Score</th>
+                            <th>Grade</th>
+                            <th>Letter Grade</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentTableBody">
+                        <!-- Student information will be added here dynamically -->
+                    </tbody>
+                </table>
+            </form>
+        </div>
+
+        <!-- Update Modal -->
+        <div id="updateModal" class="modal">
+            <div class="modal-content">
+                <label for="updateID">ID:</label>
+                <input type="text" id="updateID" name="updateID" readonly>
+
+                <label for="updateName">Name:</label>
+                <input type="text" id="updateName" name="updateName" required>
+
+                <label for="updateSurname">Surname:</label>
+                <input type="text" id="updateSurname" name="updateSurname" required>
+
+                <label for="updateMidtermScore">Midterm Score:</label>
+                <input type="text" id="updateMidtermScore" name="updateMidtermScore" required>
+
+                <label for="updateFinalScore">Final Score:</label>
+                <input type="text" id="updateFinalScore" name="updateFinalScore" required>
+
+                <button type="button" onclick="updateStudent()">Update</button>
+                <button type="button" onclick="closeModal('updateModal')">Close</button>
+            </div>
+        </div>
+
+        <!-- Delete Modal -->
+        <div id="deleteModal" class="modal">
+            <div class="modal-content">
+                <label for="deleteID">ID:</label>
+                <input type="text" id="deleteID" name="deleteID" readonly>
+
+                <p>Are you sure you want to delete student information?</p>
+
+                <button type="button" onclick="deleteStudent()">Delete</button>
+                <button type="button" onclick="closeModal('deleteModal')">Close</button>
+            </div>
+        </div>
+
+
+
+        <a name="name-search-student">SEARCH STUDENT:</a>
+        <div class="search-student">
+            <form name="searchStudentForm">
+                <label for="studentName">Student Name:</label>
+                <input type="text" id="studentName" name="studentName" required placeholder="Enter the name of the student you want to search">
+
+                <button type="button" onclick="searchStudent()">Search</button>
+
+                <table id="studentDetailsTable">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th>Grade</th>
+                            <th>Letter Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Student details will be added here dynamically -->
+                    </tbody>
+                </table>
+
+                <p>GPA: <span id="studentGPA">---</span></p>
+            </form>
+        </div>
+
+
+
+        <a name="name-view-all-students">VIEW ALL STUDENTS' RESULTS: </a>
+        <div class="view-all-students">
+            <!-- Ders Seçim Formu -->
+        <form>
+            <label for="chooseCourse">Ders Seçiniz:</label>
+            <select id="chooseCourse" name="chooseCourse">
+                <option value="" disabled selected hidden>Choose a Course</option>
+                <!-- Daha fazla ders eklenebilir -->
+            </select>
+
+            <button type="button" onclick="searchCourse()">Search Course</button>
+
+            <!-- Öğrenci Bilgisi Tablosu -->
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Midterm Score</th>
+                        <th>Final Score</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Student information will be added here dynamically -->
+                </tbody>
+            </table>
+
+
+            <!-- Course Details Modal -->
+            <div id="courseDetailsModal" class="modal">
+                <div class="modal-content">
+                    <h2>Course Details</h2>
+                    <p>Number of the students passed: <span id="passedStudentsNumber"></span></p>
+                    <p>Number of the students failed: <span id="failedStudentsNumber"></span></p>
+                    <p>Average Grade: <span id="averageGrade"></span></p>
+                    <button type="button" onclick="closeModal('courseDetailsModal')">Close</button>
+                </div>
+            </div>
+
+            <!-- Failed Students Modal -->
+            <div id="failedStudentsModal" class="modal">
+                <!-- ... (failed students modal content) ... -->
+            </div>
+
+            <!-- Passed Students Modal -->
+            <div id="passedStudentsModal" class="modal">
+                <!-- ... (passed students modal content) ... -->
+            </div>
+
+        </form>
+        </div>
+
+
+    </div>
+    
+    <!-- "Go to Top" button container -->
+    <div id="goToTopButtonContainer">
+        <button id="goToTopButton" onclick="goToTop()">Go to Top</button>
+    </div>
+
+
+
+    <footer>
+        <p>&copy; 2023 Student Management System</p>
+    </footer>
+
+</body>
+</html>

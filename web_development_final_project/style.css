@@ -1,0 +1,136 @@
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+h1 {
+    text-align: center;
+    font-size: 2em;
+    color: #747474;
+}   
+
+.container a{
+    margin-left: 45%;
+}
+
+
+/* Styles for the navigation links */
+.navbar ul {
+    list-style-type: none;
+    background-color: hsl(0, 0%, 25%);
+    padding: 0px;
+    margin-top: 0px;
+    overflow: hidden;
+}
+
+/* Hover effect for navigation links */
+.navbar a:hover {
+    background-color: hsl(0, 0%, 10%);
+}
+
+/* Styles for the navigation links in the navigation bar */
+nav {
+    flex: 1;
+    text-align: right;
+}
+
+nav ul li{
+    list-style: none;
+    display: inline-block;
+    margin-right: 50px;
+    margin-left: 0%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #c3d4d8;
+    font-size: 15px;
+    padding: 15px;
+    display: block;
+    text-align: center;
+}
+
+.add-course {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+form {
+    max-width: 400px;
+    margin: 20px auto;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid #3e3a3a;
+    padding: 8px;
+    text-align: left;
+}
+button {
+    background-color: hsl(0, 0%, 25%);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    width: 60%;
+}
+
+footer {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 10px;
+}
+
+ /* Style for the "Go to Top" button */
+ #goToTopButton {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #1b1d20;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+    
